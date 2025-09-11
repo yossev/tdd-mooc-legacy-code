@@ -43,8 +43,25 @@ describe("Aged Brie", () => {
   })
 
   test("Aged brie cant go above 50", () =>{
-        const gildedRose = new Shop([new Item("Aged Brie", 0, 50)]);
+    const gildedRose = new Shop([new Item("Aged Brie", 0, 50)]);
     gildedRose.updateQuality();
     expect(gildedRose.items[0].quality).toBe(50);
   })
 })
+
+
+describe("Sulfuras", () => {
+  test("Sulfuras never decreases in quality", () => {
+    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 1, 1)]);
+    gildedRose.updateQuality();
+    expect(gildedRose.items[0].quality).toBe(1);
+  })
+
+  test("Sulfuras never has to be sold", () => {
+    const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 1, 10)]);
+    gildedRose.updateQuality();
+    expect(gildedRose.items[0].sellIn).toBe(1);
+  })
+})
+
+
