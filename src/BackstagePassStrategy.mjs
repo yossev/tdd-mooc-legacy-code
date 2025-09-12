@@ -1,4 +1,4 @@
-class BackstagePassStrategy extends ItemStrategy {
+export default class BackstagePassStrategy extends ItemStrategy {
   updateQuality(item) {
     item.sellIn--;
     if (item.sellIn > 10) {

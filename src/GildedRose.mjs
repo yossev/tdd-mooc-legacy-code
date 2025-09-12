@@ -1,6 +1,8 @@
 
 import Item from './Item.mjs';
 
+import NormalItemStrategy from './NormalItemStrategy.mjs';
+
 export default class GildedRose {
 constructor(items = []) {
     this.items = items;

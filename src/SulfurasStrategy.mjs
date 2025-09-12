@@ -1,4 +1,4 @@
-class SulfurasStrategy extends ItemStrategy {
+export default class SulfurasStrategy extends ItemStrategy {
   updateQuality(item) {
     // The quality of Sulfuras never changes
   }

@@ -1,6 +1,7 @@
-class NormalItemStrategy extends ItemStrategy {
+import ItemStrategy from "./ItemStrategy.mjs";
+export default class NormalItemStrategy extends ItemStrategy {
   // @override
-  updateQualty(item) {
+  updateQuality(item) {
     item.sellIn--;
     if (item.sellIn < 0) {
       item.quality = Math.max(0, item.quality - 2);

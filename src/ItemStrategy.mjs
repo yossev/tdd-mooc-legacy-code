@@ -2,7 +2,7 @@
 // to get rid of the if pyramid of doom in the
 // original code.
 
-class ItemStrategy {
+export default class ItemStrategy {
   updateQuality(item) {
     throw new Error("this method should be overriden");
   }
