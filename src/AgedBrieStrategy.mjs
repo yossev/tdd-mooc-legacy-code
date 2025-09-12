@@ -1,4 +1,4 @@
-class AgedBrieStrategy extends ItemStrategy {
+export default class AgedBrieStrategy extends ItemStrategy {
   updateQuality(item) {
     item.sellIn--;
     if (item.sellIn > 0) {
