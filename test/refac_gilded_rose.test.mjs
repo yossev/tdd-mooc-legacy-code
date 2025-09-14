@@ -1,8 +1,6 @@
 import { describe, test } from "vitest";
 import { expect } from "chai";
-import  GildedRose  from "../src/GildedRose.mjs"
-import Item from "../src/Item.mjs"
-
+import { GildedRose, Item } from "../src/GildedRose.mjs";
 
 describe("Normal Item Tests", () => {
     test("Name does not change", () => {
