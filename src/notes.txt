@@ -1,0 +1,3 @@
+- I basically refactored the if pyramid of doom by 
+ -> Writing tests for all the old code -> reached 100% line and mutation coverage -> Documented what each thing does -> 
+ wrote better functionality and tests for it using strategy pattern
