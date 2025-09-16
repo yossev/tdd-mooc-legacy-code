@@ -24,7 +24,13 @@ class NormalItemStrategy extends QualityStrategy {
 
 class AgedBrieStrategy extends QualityStrategy {
     update(item) {
-        item.quality = Math.min(50, item.quality + 1);
+
+        if(item.sellIn < 0) {
+            item.quality = Math.min(50, item.quality + 2);
+        }
+        else {
+            item.quality = Math.min(50, item.quality + 1);
+        }
     }
 }
 

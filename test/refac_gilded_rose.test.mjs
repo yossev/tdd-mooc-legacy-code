@@ -30,3 +30,34 @@ describe("Normal Item Tests", () => {
         expect(items[0].quality).to.equal(18);
     })
 })
+
+describe("Aged brie tests", () => {
+
+    test("Aged brie quality increases by one before sellIn date", () => {
+        const items = [new Item("Aged Brie", 10, 20)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(21);
+    })
+
+    test("Aged brie gets 2 INCREMENTS in quality as older that it gets, doubles when sellIn date is passed", () => {
+        const items = [new Item("Aged Brie", -1, 20)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(22);
+    })
+
+    test("Aged brie quality never goes above 50 - when sellIn is passed", () => {
+        const items = [new Item("Aged Brie", -1, 50)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(50);
+    })
+
+    test("Aged brie quality never goes above 50 - before sellIn is passed", () => {
+        const items = [new Item("Aged Brie", 20, 50)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(50);
+    })
+})
