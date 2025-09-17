@@ -71,3 +71,83 @@ describe("Sulfuras tests", () => {
     })
 })
 
+describe("Backstage passes tests", () => {
+    test("Increases quality by 1 when sellIn > 10", () => {
+        const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(21);
+    });
+
+    test("Increases quality by 1 when sellIn is exactly 11", () => {
+        const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 11, 20)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(21);
+    });
+
+    test("Increases quality by 2 when sellIn is 10 or less and more than 5", () => {
+        const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 10, 25)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(27);
+    });
+
+    test("Increases quality by 2 when sellIn is exactly 6", () => {
+        const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 6, 10)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(12);
+    });
+
+    test("Increases quality by 3 when sellIn is less than 6", () => {
+        const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(13);
+    });
+
+    test("Quality drops to 0 after concert (sellIn <= 0)", () => {
+        const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 0, 40)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(0);
+    });
+
+    test("Quality never exceeds 50", () => {
+        const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(50);
+    });
+});
+
+describe("Conjured item tests", () => {
+    test("Conjured items degrade in quality twice as fast as normal items", () => {
+        const items = [new Item("Conjured Mana Cake", 3, 6)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(4);
+    });
+
+    test("Conjured items degrade by 4 when sellIn < 0", () => {
+        const items = [new Item("Conjured Mana Cake", -1, 6)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(2);
+    });
+
+    test("Conjured items quality never goes below 0", () => {
+        const items = [new Item("Conjured Mana Cake", 0, 1)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(0);
+    });
+});
+
+describe("General shop behavior", () => {
+    test("Shop starts with empty item list", () => {
+        const shop = new GildedRose([]);
+        expect(shop.items.length).to.equal(0);
+    });
+});
