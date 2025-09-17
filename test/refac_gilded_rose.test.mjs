@@ -61,3 +61,13 @@ describe("Aged brie tests", () => {
         expect(items[0].quality).to.equal(50);
     })
 })
+
+describe("Sulfuras tests", () => {
+    test("Sulfuras should never decrease in quality", () => {
+        const items = [new Item("Sulfuras, Hand of Ragnaros", 20, 80)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(80);
+    })
+})
+
