@@ -56,7 +56,12 @@ class BackstagePassStrategy extends QualityStrategy {
 
 class ConjuredItemStrategy extends QualityStrategy {
     update(item) {
-        item.quality = Math.max(0, item.quality - 2);
+        if(item.sellIn < 0){
+            item.quality = Math.max(0, item.quality - 4);
+        }else {
+            item.quality = Math.max(0, item.quality - 2);
+        }
+        
     }
 }
 
@@ -75,7 +80,9 @@ export class GildedRose {
         for (let item of this.items) {
             const strategy = this.strategies[item.name] || new NormalItemStrategy();
             strategy.update(item);
-            item.sellIn--;
+            if(item.name != 'Sulfuras, Hand of Ragnaros') {
+                item.sellIn--;
+            }
         }
     }
 }

@@ -68,7 +68,21 @@ describe("Sulfuras tests", () => {
         const shop = new GildedRose(items);
         shop.updateQuality();
         expect(items[0].quality).to.equal(80);
-    })
+    });
+
+    test("Sulfuras never has to be sold", () => {
+        const items = [new Item("Sulfuras, Hand of Ragnaros", 1, 10)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].sellIn).to.equal(1);
+    });
+
+    test("Sulfuras does not decrease in quality even when sellIn < 0", () => {
+        const items = [new Item("Sulfuras, Hand of Ragnaros", -1, 80)];
+        const shop = new GildedRose(items);
+        shop.updateQuality();
+        expect(items[0].quality).to.equal(80);
+    });
 })
 
 describe("Backstage passes tests", () => {
@@ -124,21 +138,21 @@ describe("Backstage passes tests", () => {
 
 describe("Conjured item tests", () => {
     test("Conjured items degrade in quality twice as fast as normal items", () => {
-        const items = [new Item("Conjured Mana Cake", 3, 6)];
+        const items = [new Item("Conjured", 3, 6)];
         const shop = new GildedRose(items);
         shop.updateQuality();
         expect(items[0].quality).to.equal(4);
     });
 
     test("Conjured items degrade by 4 when sellIn < 0", () => {
-        const items = [new Item("Conjured Mana Cake", -1, 6)];
+        const items = [new Item("Conjured", -1, 6)];
         const shop = new GildedRose(items);
         shop.updateQuality();
         expect(items[0].quality).to.equal(2);
     });
 
     test("Conjured items quality never goes below 0", () => {
-        const items = [new Item("Conjured Mana Cake", 0, 1)];
+        const items = [new Item("Conjured", 0, 1)];
         const shop = new GildedRose(items);
         shop.updateQuality();
         expect(items[0].quality).to.equal(0);
